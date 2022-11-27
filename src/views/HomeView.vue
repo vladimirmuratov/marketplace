@@ -42,7 +42,6 @@ export default {
 
     watch(() => store.getters.message, value => {
       message.value = value
-      console.log('message', message.value)
     })
 
     onMounted(async () => {
