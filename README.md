@@ -1,5 +1,11 @@
 # marketplace
 
+## Список товаров: https://fakestoreapi.com
+
+## Бекенд, авторизация: Firebase
+
+## Deploy: 
+
 ## Project setup
 ```
 npm install

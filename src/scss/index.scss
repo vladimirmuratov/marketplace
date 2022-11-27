@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa+One&family=Open+Sans:wght@400;700&family=Quicksand:wght@300;400;500;700&family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,100&display=swap');
+@import "variables.scss";
+@import "mixins";
+
+/*font-family: 'Changa One', cursive;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Quicksand', sans-serif;
+font-family: 'Roboto', sans-serif;*/
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background: $bgColor;
+  font-family: 'Roboto', sans-serif;
+  color: $fontColor;
+}
+
+#app {
+  height: 85vh;
+}
+
+h1 {
+  color: $fontColor;
+}
+
+a {
+  color: $fontColor;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.3rem;
+  transition: all 0.1s linear;
+}
+
+a:hover, a:active, a.active {
+  border-bottom: 2px solid $borderColor;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  margin-top: 7.5rem;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+
+  & label {
+    margin-bottom: .5rem;
+    color: $fontColor;
+    font-size: 1.5rem;
+  }
+
+  & input {
+    outline: none;
+    border: none;
+    background-color: $bgColor;
+    color: $fontColor;
+    font-size: 1.5rem;
+    border-bottom: .001rem solid $fontColor;
+  }
+
+  & input:focus {
+    border-bottom: .2rem solid $borderColor;
+  }
+
+  & small {
+    color: $dangerColor;
+    font-size: 1.3rem;
+    margin-top: .5rem;
+  }
+}
+
+.btn {
+  @include btnMixin;
+}
+
+.btn:disabled {
+  @include btnMixin;
+  cursor: not-allowed;
+  opacity: 1 !important;
+  background: #eee !important;
+  border-color: #ddd !important;
+  color: #999 !important;
+}
+
+.btn.warning {
+  @include btnMixin($warningColor);
+}
+
+.btn.primary {
+  @include btnMixin($primaryColor);
+}
+
+.btn.danger {
+  @include btnMixin($dangerColor);
+}

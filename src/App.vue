@@ -1,30 +1,44 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <component :is="layoutName + '-layout'" v-if="layoutName"/>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { computed, getCurrentInstance, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import MainLayout from '@/layouts/MainLayout.vue'
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import { ACCESS_TOKEN } from '@/constants'
+import store from '@/store'
 
-nav {
-  padding: 30px;
+export default {
+  setup () {
+    const route = useRoute()
+    let accessToken = localStorage.getItem(ACCESS_TOKEN)
+    const isAuth = store.getters['auth/isAuth']
+    const instance = getCurrentInstance()
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+    watch(() => store.getters['auth/token'], value => {
+      instance?.proxy?.$forceUpdate()
+      accessToken = value
+    })
 
-    &.router-link-exact-active {
-      color: #42b983;
+    onMounted(async () => {
+      if (accessToken && !isAuth) {
+        await store.dispatch('auth/getUserInfo')
+      }
+    })
+
+    return {
+      layoutName: computed(() => route.meta.layout)
     }
+  },
+  components: {
+    MainLayout,
+    AuthLayout
   }
 }
+</script>
+
+<style lang="scss">
+
 </style>
