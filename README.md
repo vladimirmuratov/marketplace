@@ -4,7 +4,7 @@
 
 ## Бекенд, авторизация: Firebase
 
-## Deploy: 
+## Deploy: https://marketplace-nine-zeta.vercel.app
 
 ## Project setup
 ```
