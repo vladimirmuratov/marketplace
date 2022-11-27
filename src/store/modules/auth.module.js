@@ -71,7 +71,7 @@ export default {
             email: payload.email
           })
 
-          router.back()
+          await router.replace('/')
         }
       } catch (e) {
         await context.dispatch('setMessage', {
@@ -95,7 +95,7 @@ export default {
 
           await context.dispatch('getUserInfo')
 
-          router.back()
+          await router.replace('/')
         }
       } catch (e) {
         await context.dispatch('setMessage', {
